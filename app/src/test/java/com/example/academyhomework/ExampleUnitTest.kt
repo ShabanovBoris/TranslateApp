@@ -1,5 +1,7 @@
 package com.example.academyhomework
 
+import com.example.academyhomework.data.DataSource
+import com.example.academyhomework.utils.Utils.stringWordsDivider
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -14,4 +16,12 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
+
+    @Test
+    fun stringWordsDividerTest() {
+        print(stringWordsDivider("embed — встраивать unscramble — Расшифровывать prior — перед straightforward — просто pane — часть окна"))
+    }
+
+
+
 }
