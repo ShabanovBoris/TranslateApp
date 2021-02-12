@@ -18,7 +18,7 @@
         android:orientation="horizontal"
         >
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewWord"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -26,15 +26,17 @@
             android:layout_weight="1"
             tools:text="Word"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            android:textColor="@color/secondaryTextColor"
+            android:textColor="@color/secondaryDarkColor"
             android:layout_margin="18dp"
-            android:background="@color/secondaryDarkColor"
+            android:background="@drawable/shape_oval"
             android:layout_gravity="center_vertical"
             android:gravity="center"
+            android:importantForAccessibility="no"
+            app:fontFamily="sans-serif-black"
             />
 
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewTranslate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -44,9 +46,13 @@
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/secondaryTextColor"
             android:layout_margin="18dp"
-            android:background="@color/primaryColor"
+            android:background="@drawable/shape_oval"
             android:layout_gravity="center_vertical"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:importantForAccessibility="no"
+            app:fontFamily="sans-serif-thin"
+
+            />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
