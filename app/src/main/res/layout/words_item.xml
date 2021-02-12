@@ -5,11 +5,11 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
-    app:cardCornerRadius="16dp">
+    app:cardCornerRadius="8dp">
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="120dp"
         android:background="@color/primaryDarkColor"/>
 
     <LinearLayout
@@ -20,14 +20,15 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewWord"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="40dp"
+            android:maxWidth="60dp"
             android:layout_weight="1"
             tools:text="Word"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            android:textColor="@color/secondaryDarkColor"
-            android:layout_margin="18dp"
+            android:textColor="@color/teal_700"
+            android:layout_margin="8dp"
             android:background="@drawable/shape_oval"
             android:layout_gravity="center_vertical"
             android:gravity="center"
@@ -38,14 +39,15 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewTranslate"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:minHeight="40dp"
+            android:maxWidth="60dp"
             tools:text="Translate"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/secondaryTextColor"
-            android:layout_margin="18dp"
+            android:layout_margin="8dp"
             android:background="@drawable/shape_oval"
             android:layout_gravity="center_vertical"
             android:gravity="center"
