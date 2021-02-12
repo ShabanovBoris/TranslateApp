@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/primaryDarkColor"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/textViewWord"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
+            android:layout_weight="1"
+            tools:text="Word"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/secondaryTextColor"
+            android:layout_margin="18dp"
+            android:background="@color/secondaryDarkColor"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            />
+
+
+        <TextView
+            android:id="@+id/textViewTranslate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="40dp"
+            tools:text="Translate"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/secondaryTextColor"
+            android:layout_margin="18dp"
+            android:background="@color/primaryColor"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

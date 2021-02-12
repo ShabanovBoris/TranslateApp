@@ -52,9 +52,9 @@ ambiguous
 — двусмысленный
 convenient
 — удобно
-vice versa
+vice_versa
 — наоборорт
-by any chance
+by_any_chance
 — случайно,случаем
 appropriate
 — подходящий
@@ -70,7 +70,7 @@ typo
 — опечатка
 ensure
 — обеспечивать
-sort of
+sort_of
 — вроде_как,как_бы,отчасти
 rely
 — доверять
@@ -80,7 +80,7 @@ recall
 — вспомнить
 omit
 — пропускать
-it turns out
+it_turns_out
 — оказывается,оказалось
 concisely
 — кратко
@@ -100,8 +100,8 @@ period
 — точка
 obtain
 — получать
-So far
-— пока что
+So_far
+— пока_что
 crucial
 — критично
 arrange
@@ -177,7 +177,7 @@ twist
 stench
 — вонь
 loath
-— Не хотелось
+— Не_хотелось
 admit
 — признавать
 flow
@@ -248,7 +248,7 @@ aware
 — осведомленный
 dice
 — куб
-at any rate
+at_any_rate
 — во_всяком_cлучае,по_меньшей_мере
 insist
 — настаивать
@@ -286,7 +286,7 @@ clue
 — ключ_к_разгадке,ключ,раскрывать
 insensitive
 — Нечувствительный
-in turn
+in_turn
 — По_очереди
 prone
 — склонный
@@ -428,7 +428,7 @@ equity
 — столица
 anchor
 — якорь
-should take
+should_take
 — должен_занять
 should
 — должен
@@ -498,9 +498,9 @@ intend
 — намереваться
 inquirie
 — предложений
-hold off
+hold_off
 — удерживать,откладывать
-figure out
+figure_out
 — сообразить,выяснить,понять,разобраться
 figure
 — понимать
@@ -568,7 +568,7 @@ testify
 — заявлять,давать_показания
 overwhelm
 — ошеломлять
-out of the blue
+out_of_the_blue
 — внезапно,совершенно_неожиданно,как_гром_среди_ясного_неба
 invitation
 — приглашение
@@ -607,6 +607,8 @@ leash
 urge
 — импульс
     </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
