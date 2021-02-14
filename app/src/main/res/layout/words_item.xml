@@ -46,7 +46,7 @@
             android:maxWidth="60dp"
             tools:text="Translate"
             android:textAppearance="?attr/textAppearanceHeadline6"
-            android:textColor="@color/secondaryTextColor"
+            android:textColor="@color/white"
             android:layout_margin="8dp"
             android:background="@drawable/shape_oval"
             android:layout_gravity="center_vertical"
