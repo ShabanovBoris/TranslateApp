@@ -37,6 +37,7 @@ class SplashScreenfragment : Fragment() {
             onAllListClick()
         }
 
+
     }
 
     private fun onAllListClick() {

@@ -1,18 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@color/primaryDarkColor">
 
     <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost = "true"
-        app:navGraph="@navigation/nav_graph"/>
+        app:navGraph="@navigation/nav_graph"
+        android:layout_weight="1"/>
 
-</FrameLayout>
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:id="@+id/main_container"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/imageButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/textViewAll"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAll"
+            android:onClick="onClickImage1"
+            android:text="1"
+            android:layout_weight="1"
+            android:background="@color/primaryColor"/>
+        <Button
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/textViewAll"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAll"
+            android:onClick="onClickImage2"
+            android:text="2"
+            android:layout_weight="1"
+            android:background="@color/primaryColor"/>
+        <Button
+            android:id="@+id/imageButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/textViewAll"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAll"
+            android:onClick="onClickImage3"
+            android:text="3"
+            android:layout_weight="1"
+            android:background="@color/primaryColor"/>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
