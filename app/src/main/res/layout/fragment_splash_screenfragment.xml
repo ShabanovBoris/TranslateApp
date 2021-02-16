@@ -73,6 +73,17 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="100dp"/>
 
+    <Button
+        android:id="@+id/buttonDown"
+        android:layout_width="64dp"
+        android:layout_height="32dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/shape_oval"
+        app:icon="@drawable/ic_baseline_keyboard_arrow_down_24"
+        app:iconGravity="textStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+        app:strokeColor="#B2EBF2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

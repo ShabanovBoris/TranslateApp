@@ -1,5 +1,6 @@
 package com.example.academyhomework
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -8,16 +9,20 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.academyhomework.databinding.FragmentSplashScreenfragmentBinding
 import com.example.academyhomework.databinding.FragmentWordListBinding
+import com.example.academyhomework.extensions.Throughoutable
 
 class SplashScreenfragment : Fragment() {
 
     private var _binding: FragmentSplashScreenfragmentBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
+    private var listener:Throughoutable? = null
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is Throughoutable){
+            listener = context
+        }
     }
 
     override fun onCreateView(
@@ -37,6 +42,11 @@ class SplashScreenfragment : Fragment() {
             onAllListClick()
         }
 
+        binding.buttonDown.apply {
+            setOnClickListener { listener?.onClickToHide()
+                visibility = View.GONE}
+
+        }
 
     }
 
@@ -48,6 +58,11 @@ class SplashScreenfragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

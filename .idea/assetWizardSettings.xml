@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$PROJECT_DIR$/../../sdk/icons/material/materialicons/directions_bike/baseline_directions_bike_24.xml" />
+                                      <entry key="url" value="file:/$PROJECT_DIR$/../../sdk/icons/material/materialicons/keyboard_arrow_down/baseline_keyboard_arrow_down_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,7 +28,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_baseline_directions_bike_24" />
+                            <entry key="outputName" value="ic_baseline_keyboard_arrow_down_24" />
                             <entry key="sourceFile" value="D:\Project\AcademyHomework" />
                           </map>
                         </option>
