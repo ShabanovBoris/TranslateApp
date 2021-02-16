@@ -3,6 +3,7 @@ package com.example.academyhomework
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavHost
 import androidx.navigation.fragment.NavHostFragment
@@ -43,16 +44,17 @@ class SplashScreenfragment : Fragment() {
         }
 
         binding.buttonDown.apply {
-            setOnClickListener { listener?.onClickToHide()
-                visibility = View.GONE}
+            setOnClickListener { listener?.onClickToHide(findViewById<Button>(R.id.buttonDown))
+                }
 
         }
 
     }
 
     private fun onAllListClick() {
-        val action = SplashScreenfragmentDirections.actionSplashScreenfragmentToWordList(true)
-        findNavController().navigate(action)
+//        val action = SplashScreenfragmentDirections.actionSplashScreenfragmentToWordList(true)
+//        findNavController().navigate(action)
+        listener?.onWordListClicked()
     }
 
     override fun onDestroyView() {

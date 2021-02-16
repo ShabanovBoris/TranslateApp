@@ -1,5 +1,8 @@
 package com.example.academyhomework.extensions
 
+import android.view.View
+
 interface Throughoutable {
-    fun onClickToHide()
+    fun onClickToHide(view: View)
+    fun onWordListClicked()
 }
