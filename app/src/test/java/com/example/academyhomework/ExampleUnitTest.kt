@@ -22,6 +22,14 @@ class ExampleUnitTest {
         print(stringWordsDivider("embed — встраивать unscramble — Расшифровывать prior — перед straightforward — просто pane — часть окна"))
     }
 
-
+    @Test
+    fun makeHintTest(){
+        var word = "Colloqium"
+        var value:String = ""
+        for (item in word.toList().shuffled()) {
+            value = value.plus(item)
+        }
+        print(value)
+    }
 
 }

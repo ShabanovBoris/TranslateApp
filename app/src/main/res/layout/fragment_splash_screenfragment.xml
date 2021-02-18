@@ -30,13 +30,13 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@android:color/holo_orange_light"
         android:background="@drawable/shape_oval"
-        android:text="English - Russian"
-        android:gravity="center"
+        android:backgroundTint="@android:color/holo_orange_light"
         android:clickable="true"
-        android:textColor="@color/primaryColor"
+        android:gravity="center"
+        android:text="English - Russian"
         android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textColor="@color/primaryColor"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="@id/guidelineRight"
         app:layout_constraintStart_toStartOf="@id/guidelineLeft"
@@ -84,6 +84,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:strokeColor="#B2EBF2" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:layout_marginBottom="250dp"
+        android:clickable="true"
+        android:src="?attr/actionModeCutDrawable"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

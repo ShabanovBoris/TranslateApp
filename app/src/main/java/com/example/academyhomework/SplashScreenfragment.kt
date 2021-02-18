@@ -6,11 +6,13 @@ import android.view.*
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavHost
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.academyhomework.databinding.FragmentSplashScreenfragmentBinding
 import com.example.academyhomework.databinding.FragmentWordListBinding
 import com.example.academyhomework.extensions.Throughoutable
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class SplashScreenfragment : Fragment() {
 
@@ -47,6 +49,12 @@ class SplashScreenfragment : Fragment() {
             setOnClickListener { listener?.onClickToHide(findViewById<Button>(R.id.buttonDown))
                 }
 
+        }
+        binding.floatingActionButton.apply {
+            setOnClickListener{
+                findNavController().navigate(R.id.action_splashScreenfragment_to_blankFragment)
+                listener?.onClickToHide(it)
+            }
         }
 
     }
