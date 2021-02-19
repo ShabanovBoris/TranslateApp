@@ -14,7 +14,8 @@
             app:destination="@id/wordList" />
         <action
             android:id="@+id/action_splashScreenfragment_to_blankFragment"
-            app:destination="@id/blankFragment" />
+            app:destination="@id/blankFragment"
+            app:popUpTo="@id/wordList" />
     </fragment>
     <fragment
         android:id="@+id/wordList"
