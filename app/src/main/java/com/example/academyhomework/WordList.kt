@@ -33,9 +33,7 @@ class WordList : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             recyclerView = view.findViewById(R.id.word_recycler)
-            recyclerView.adapter = WordsAdapter(
-                DataSource().loadWords(context?.applicationContext!!)
-            )
+            recyclerView.adapter = WordsAdapter()
     }
     override fun onStart() {
         super.onStart()
@@ -43,10 +41,16 @@ class WordList : BottomSheetDialogFragment() {
             val bottomSheet = dialog!!.findViewById<View>(R.id.design_bottom_sheet)
             bottomSheet.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
             val behavior = BottomSheetBehavior.from<View>(bottomSheet)
-            behavior.peekHeight = (resources.displayMetrics.heightPixels*0.15).toInt()//replace to whatever you want
+            behavior.peekHeight = (resources.getDimension(R.dimen.words_header_height)).toInt()//replace to whatever you want
             view?.requestLayout()
         }
 
+        updateList()
+
+    }
+
+    private fun updateList() {
+        (recyclerView.adapter as WordsAdapter).bindWords( DataSource().loadWords(context?.applicationContext!!))
     }
 
 

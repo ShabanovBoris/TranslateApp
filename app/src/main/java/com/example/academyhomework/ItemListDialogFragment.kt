@@ -44,7 +44,7 @@ class ItemListDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = view.findViewById(R.id.word_recycler)
         recyclerView.adapter = WordsAdapter(
-            DataSource().loadWords(context?.applicationContext!!)
+            //DataSource().loadWords(context?.applicationContext!!)
         )
     }
 
