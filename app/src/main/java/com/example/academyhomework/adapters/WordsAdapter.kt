@@ -1,22 +1,47 @@
 package com.example.academyhomework.adapters
 
+import android.opengl.Visibility
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.academyhomework.R
+import com.example.academyhomework.extensions.EditTextChangeListener
+import com.example.academyhomework.extensions.WordDescribable
 import com.example.academyhomework.model.Dword
+import java.lang.Exception
 import java.lang.IllegalArgumentException
 
 
 class WordsAdapter():RecyclerView.Adapter<WordsAdapter.WordsItemViewHolder>() {
 
+    private var textChangeListener:EditTextChangeListener? = null
+    private var disListener: WordDescribable? = null
+    fun setOnClickWordListListener(l: WordDescribable){
+        disListener = l
+    }
+    fun setOnTextChangeListener(listener: EditTextChangeListener){
+        textChangeListener = listener
+    }
 
-    private var words = listOf<Dword>()
+    private var words = mutableListOf<Dword>()
+    private var original = listOf<Dword>()
 
     abstract class WordsItemViewHolder(view: View): RecyclerView.ViewHolder(view)
+    class EmptyViewHolder(view: View): WordsItemViewHolder(view)
     class HeaderViewHolder(view: View): WordsItemViewHolder(view)
+    {
+        val search = view.findViewById<EditText>(R.id.et_wordSearch)
+        val searchLayout = view.findViewById<com.google.android.material.textfield.TextInputLayout>(R.id.et_wordSearch_layout)
+    }
+
     class WordViewHolder(view: View): WordsItemViewHolder(view){
         val textViewWord = view.findViewById<TextView>(R.id.textViewWord)
         val textViewTranslate: TextView = view.findViewById(R.id.textViewTranslate)
@@ -27,19 +52,32 @@ class WordsAdapter():RecyclerView.Adapter<WordsAdapter.WordsItemViewHolder>() {
         }
     }
     fun bindWords(list: List<Dword>){
-        words = list
+        words = list.toMutableList()
+        original = list
         notifyDataSetChanged()
     }
 
     enum class ViewTypes(type:Int){
         HEADER(0),
-        WORD(1)
+        WORD(1),
+        EMPTY(2)
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if(words[position].word == "nope") {ViewTypes.HEADER.ordinal}
-        else ViewTypes.WORD.ordinal
+        return try {
+
+
+            when {
+
+                words[position] == null -> ViewTypes.EMPTY.ordinal
+                words[position].word == "nope" -> ViewTypes.HEADER.ordinal
+                else -> ViewTypes.WORD.ordinal
+            }
+        }catch (e: Exception){
+            ViewTypes.EMPTY.ordinal
+        }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordsItemViewHolder {
         return when (viewType) {
@@ -50,20 +88,49 @@ class WordsAdapter():RecyclerView.Adapter<WordsAdapter.WordsItemViewHolder>() {
             ViewTypes.HEADER.ordinal ->  HeaderViewHolder(LayoutInflater.from(parent.context)
                 .inflate(R.layout.words_header, parent, false))
 
-            else -> throw IllegalArgumentException()
+            else -> EmptyViewHolder(LayoutInflater.from(parent.context)
+                .inflate(R.layout.empty_word_item, parent, false))
         }
     }
+
 
     override fun onBindViewHolder(holder: WordsItemViewHolder, position: Int) {
 
         when(holder) {
-            is WordViewHolder -> holder.bindWordFields(words[position])
+            is WordViewHolder -> {
+                holder.bindWordFields(words[position])
+                holder.itemView.setOnClickListener{
+                    disListener?.onClick(words[position])
+                }
+            }
+            is HeaderViewHolder -> holder.itemView.setOnClickListener {
+                when (holder.searchLayout.visibility) {
+                    View.GONE -> holder.searchLayout.visibility = View.VISIBLE
+                    View.VISIBLE -> holder.searchLayout.visibility = View.GONE
+
+                }
+                val defaultSearch:(CharSequence?,Int,Int,Int) -> Unit = { field,_,_,_ ->
+
+                    words = original.filter { it.word.startsWith(field?:"",0,true) }.toMutableList()
+                    words.add(0, Dword())
+                    notifyDataSetChanged()
+                }
+                holder.search.addTextChangedListener(
+                    onTextChanged = textChangeListener?.action ?: defaultSearch
+                )
+
+
+            }
         }
     }
 
     override fun getItemCount(): Int {
         return words.size +1
     }
+
+
+
+
 }
 
 

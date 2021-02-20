@@ -1,20 +1,23 @@
 package com.example.academyhomework
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.academyhomework.adapters.WordsAdapter
 import com.example.academyhomework.data.DataSource
+import com.example.academyhomework.extensions.WordDescribable
+import com.example.academyhomework.model.Dword
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
 class WordList : BottomSheetDialogFragment() {
 
-   private  lateinit var recyclerView:RecyclerView
+    private  lateinit var recyclerView:RecyclerView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +36,21 @@ class WordList : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             recyclerView = view.findViewById(R.id.word_recycler)
-            recyclerView.adapter = WordsAdapter()
+
+            val adapter = WordsAdapter()
+        adapter.setOnClickWordListListener(object : WordDescribable {
+            override fun onClick(word: Dword) {
+                Toast.makeText(context, "${word.word} is meaning...bla bla bla", Toast.LENGTH_SHORT).show()
+            }
+        })
+            adapter.setHasStableIds(true)
+            recyclerView.apply {
+                setHasFixedSize(true)
+                this.adapter = adapter
+            }
+
+
+
     }
     override fun onStart() {
         super.onStart()
@@ -52,6 +69,7 @@ class WordList : BottomSheetDialogFragment() {
     private fun updateList() {
         (recyclerView.adapter as WordsAdapter).bindWords( DataSource().loadWords(context?.applicationContext!!))
     }
+
 
 
 }

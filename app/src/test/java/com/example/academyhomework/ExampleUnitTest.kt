@@ -1,6 +1,7 @@
 package com.example.academyhomework
 
 import com.example.academyhomework.data.DataSource
+import com.example.academyhomework.utils.Utils
 import com.example.academyhomework.utils.Utils.stringWordsDivider
 import org.junit.Test
 
@@ -31,5 +32,12 @@ class ExampleUnitTest {
         }
         print(value)
     }
-
+    @Test
+    fun filterTest() {
+        var words = listOf<String>("action","embeded","hello")
+        words = words.filter {
+            it.startsWith("ac",0,true)
+        }
+        print(words)
+    }
 }
