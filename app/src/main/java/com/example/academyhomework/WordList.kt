@@ -4,10 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import com.example.academyhomework.adapters.WordsAdapter
 import com.example.academyhomework.data.DataSource
+import com.example.academyhomework.extensions.AutoScrollable
 import com.example.academyhomework.extensions.WordDescribable
 import com.example.academyhomework.model.Dword
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -37,13 +42,27 @@ class WordList : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             recyclerView = view.findViewById(R.id.word_recycler)
 
+            val snapHelper = PagerSnapHelper()
+            snapHelper.attachToRecyclerView(recyclerView)
+
+
             val adapter = WordsAdapter()
+            adapter.setAutoScrollBack(object :AutoScrollable{
+                override fun scrollBack(search: EditText) {
+                    recyclerView.scrollBy(0,-500)
+
+                }
+            })
+
+
         adapter.setOnClickWordListListener(object : WordDescribable {
             override fun onClick(word: Dword) {
                 Toast.makeText(context, "${word.word} is meaning...bla bla bla", Toast.LENGTH_SHORT).show()
             }
         })
-            adapter.setHasStableIds(true)
+
+
+
             recyclerView.apply {
                 setHasFixedSize(true)
                 this.adapter = adapter
@@ -68,8 +87,20 @@ class WordList : BottomSheetDialogFragment() {
 
     private fun updateList() {
         (recyclerView.adapter as WordsAdapter).bindWords( DataSource().loadWords(context?.applicationContext!!))
+        (recyclerView.adapter as WordsAdapter).submitList(DataSource().loadWords(context?.applicationContext!!))
     }
 
+
+
+}
+
+class WordCallback: DiffUtil.ItemCallback<Dword>(){
+    override fun areItemsTheSame(oldItem: Dword, newItem: Dword): Boolean =
+        oldItem.word == newItem.word
+
+
+    override fun areContentsTheSame(oldItem: Dword, newItem: Dword): Boolean =
+        oldItem == newItem
 
 
 }

@@ -25,7 +25,6 @@
             android:minHeight="40dp"
             android:maxWidth="60dp"
             android:layout_weight="1"
-            tools:text="Word"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/teal_700"
             android:layout_margin="8dp"
@@ -34,6 +33,7 @@
             android:gravity="center"
             android:importantForAccessibility="no"
             app:fontFamily="sans-serif-black"
+            tools:text="@tools:sample/cities"
             />
 
 
@@ -44,7 +44,6 @@
             android:layout_weight="1"
             android:minHeight="40dp"
             android:maxWidth="60dp"
-            tools:text="Translate"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/white"
             android:layout_margin="8dp"
@@ -53,6 +52,7 @@
             android:gravity="center"
             android:importantForAccessibility="no"
             app:fontFamily="sans-serif-thin"
+            tools:text="@tools:sample/lorem"
 
             />
     </LinearLayout>

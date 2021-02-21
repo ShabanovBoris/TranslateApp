@@ -37,8 +37,7 @@ class SplashScreenfragment : Fragment() {
         return binding.root
     }
 
-//    Below the binding property, create a property for the recycler view.
-//    private lateinit var recyclerView: RecyclerView
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.textViewAll.setOnClickListener{

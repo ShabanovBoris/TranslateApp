@@ -1,34 +1,35 @@
 package com.example.academyhomework.adapters
 
-import android.opengl.Visibility
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.academyhomework.R
+import com.example.academyhomework.WordCallback
+import com.example.academyhomework.extensions.AutoScrollable
 import com.example.academyhomework.extensions.EditTextChangeListener
 import com.example.academyhomework.extensions.WordDescribable
 import com.example.academyhomework.model.Dword
 import java.lang.Exception
-import java.lang.IllegalArgumentException
 
 
-class WordsAdapter():RecyclerView.Adapter<WordsAdapter.WordsItemViewHolder>() {
+class WordsAdapter():androidx.recyclerview.widget.ListAdapter<Dword,WordsAdapter.WordsItemViewHolder>(WordCallback()) {
 
     private var textChangeListener:EditTextChangeListener? = null
     private var disListener: WordDescribable? = null
+    private var scrollback: AutoScrollable?=null
     fun setOnClickWordListListener(l: WordDescribable){
         disListener = l
     }
     fun setOnTextChangeListener(listener: EditTextChangeListener){
         textChangeListener = listener
+    }
+    fun setAutoScrollBack(scroll: AutoScrollable){
+        scrollback = scroll
     }
 
     private var words = mutableListOf<Dword>()
@@ -40,6 +41,7 @@ class WordsAdapter():RecyclerView.Adapter<WordsAdapter.WordsItemViewHolder>() {
     {
         val search = view.findViewById<EditText>(R.id.et_wordSearch)
         val searchLayout = view.findViewById<com.google.android.material.textfield.TextInputLayout>(R.id.et_wordSearch_layout)
+        val tvHeader = view.findViewById<TextView>(R.id.tv_header)
     }
 
     class WordViewHolder(view: View): WordsItemViewHolder(view){
@@ -105,15 +107,26 @@ class WordsAdapter():RecyclerView.Adapter<WordsAdapter.WordsItemViewHolder>() {
             }
             is HeaderViewHolder -> holder.itemView.setOnClickListener {
                 when (holder.searchLayout.visibility) {
-                    View.GONE -> holder.searchLayout.visibility = View.VISIBLE
-                    View.VISIBLE -> holder.searchLayout.visibility = View.GONE
+
+                    View.GONE -> {
+
+                        holder.searchLayout.visibility = View.VISIBLE
+                        holder.search.showSoftInputOnFocus = true
+                        scrollback?.scrollBack(holder.search)
+
+                    }
+                    View.VISIBLE -> {
+
+                        holder.searchLayout.visibility = View.GONE
+
+                    }
 
                 }
                 val defaultSearch:(CharSequence?,Int,Int,Int) -> Unit = { field,_,_,_ ->
 
                     words = original.filter { it.word.startsWith(field?:"",0,true) }.toMutableList()
                     words.add(0, Dword())
-                    notifyDataSetChanged()
+                    submitList(words)
                 }
                 holder.search.addTextChangedListener(
                     onTextChanged = textChangeListener?.action ?: defaultSearch
@@ -124,9 +137,7 @@ class WordsAdapter():RecyclerView.Adapter<WordsAdapter.WordsItemViewHolder>() {
         }
     }
 
-    override fun getItemCount(): Int {
-        return words.size +1
-    }
+
 
 
 
