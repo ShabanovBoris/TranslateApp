@@ -13,6 +13,13 @@ fun Dword.toRussianTranslate():RussianTranslate{
     )
 }
 
+fun List<Dword>.toEnglishTranslateList():List<EnglishTranslate>{
+
+    forEach { it.toEnglishTranslate() }
+
+    return this as List<EnglishTranslate>
+}
+
 fun Dword.toEnglishTranslate():EnglishTranslate{
     return EnglishTranslate(
         engWord = word,
