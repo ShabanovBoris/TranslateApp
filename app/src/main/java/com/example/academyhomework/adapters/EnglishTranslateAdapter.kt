@@ -102,14 +102,6 @@ class EnglishTranslateAdapter() : RecyclerView.Adapter<EnglishTranslateAdapter.E
         }
 
     }
-
-    override fun getItemCount(): Int = list.size
-
-    enum class TYPE(int: Int) {
-        EMPTY(0),
-        WORD(1)
-    }
-
     override fun onBindViewHolder(holder: ETViewHolder, position: Int) {
         when (holder) {
             is WordETViewHolder -> {
@@ -124,5 +116,14 @@ class EnglishTranslateAdapter() : RecyclerView.Adapter<EnglishTranslateAdapter.E
 
         }
     }
+
+    override fun getItemCount(): Int = list.size
+
+    enum class TYPE(int: Int) {
+        EMPTY(0),
+        WORD(1)
+    }
+
+
 
 }

@@ -1,7 +1,6 @@
 package com.example.academyhomework
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -43,42 +42,47 @@ class QuizFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = view.findViewById(R.id.rv_quiz)
+        recyclerView.setHasFixedSize(true)
+        setRecyclerList()
+    }
+
+    private fun setRecyclerList(){
         val listTemp = DataSource().loadWords(requireContext())
         list = (listTemp.toEnglishTranslateList()).toMutableList()
         var adapter =  EnglishTranslateAdapter()
-        recyclerView.setHasFixedSize(true)
-        adapter.bindList(list)
-        adapter.setOnClickAnswerHandler(object : AnswerHandler {
-            override val action: (EnglishTranslate.TranslateVariants, Int) -> Unit
-                get() = { ans, pos ->
-                    when (ans) {
-                        EnglishTranslate.TranslateVariants.GOOD -> {
-                            adapter.notifyItemRemoved(pos)
-                            list.removeAt(pos)
-                            adapter.bindList(list)
-                        }
 
-                        EnglishTranslate.TranslateVariants.WRONG -> {
-                            Toast.makeText(
-                                context,
-                                "WRONG!",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            adapter.notifyItemChanged(pos,"payload")
-                        }
+        adapter.setOnClickAnswerHandler(getHandler(adapter))
+
+        adapter.bindList(list)
+        recyclerView.adapter = adapter
+    }
+
+    private fun getHandler(adapter: EnglishTranslateAdapter): AnswerHandler = object : AnswerHandler {
+        override val action: (EnglishTranslate.TranslateVariants, Int) -> Unit
+            get() = { ans, pos ->
+                when (ans) {
+                    EnglishTranslate.TranslateVariants.GOOD -> {
+                        adapter.notifyItemRemoved(pos)
+                        list.removeAt(pos)
+                        adapter.bindList(list)
+                    }
+
+                    EnglishTranslate.TranslateVariants.WRONG -> {
+                        Toast.makeText(
+                            context,
+                            "WRONG!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        adapter.notifyItemChanged(pos,"payload")
                     }
                 }
-
-            override fun handle(ans: EnglishTranslate.TranslateVariants, pos: Int) {
-                action(ans, pos)
-
             }
 
-
-        })
-        recyclerView.adapter = adapter
-
+        override fun handle(ans: EnglishTranslate.TranslateVariants, pos: Int) {
+            action(ans, pos)
+        }
     }
+
 
     companion object {
 
@@ -91,4 +95,6 @@ class QuizFragment : Fragment() {
                 }
             }
     }
+
+
 }
