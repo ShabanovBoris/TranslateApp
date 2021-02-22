@@ -15,9 +15,11 @@ fun Dword.toRussianTranslate():RussianTranslate{
 
 fun List<Dword>.toEnglishTranslateList():List<EnglishTranslate>{
 
-    forEach { it.toEnglishTranslate() }
+    var newList:MutableList<EnglishTranslate> = mutableListOf(EnglishTranslate("nope","nope"))
+    forEach { newList?.add(it.toEnglishTranslate()) }
 
-    return this as List<EnglishTranslate>
+
+    return newList
 }
 
 fun Dword.toEnglishTranslate():EnglishTranslate{

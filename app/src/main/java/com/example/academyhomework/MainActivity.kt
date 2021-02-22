@@ -16,6 +16,7 @@ import androidx.core.text.PrecomputedTextCompat
 import androidx.core.view.marginBottom
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.add
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.academyhomework.data.DataSource
 import com.example.academyhomework.extensions.Throughoutable
@@ -92,6 +93,10 @@ class MainActivity : AppCompatActivity(), Throughoutable {
     override fun onWordListClicked(){
         val item = WordList()
             .show(supportFragmentManager, "dialog")
+    }
+
+    override fun onEnglishTranslateClicked() {
+
     }
 
 }

@@ -5,4 +5,5 @@ import android.view.View
 interface Throughoutable {
     fun onClickToHide(view: View)
     fun onWordListClicked()
+    fun onEnglishTranslateClicked()
 }

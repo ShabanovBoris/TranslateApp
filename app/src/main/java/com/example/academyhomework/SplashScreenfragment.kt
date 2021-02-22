@@ -49,12 +49,9 @@ class SplashScreenfragment : Fragment() {
                 }
 
         }
-        binding.floatingActionButton.apply {
-            setOnClickListener{
-                findNavController().navigate(R.id.action_splashScreenfragment_to_blankFragment)
-                listener?.onClickToHide(it)
-            }
-        }
+
+        binding.tvER.setOnClickListener{ listener?.onEnglishTranslateClicked()
+        findNavController().navigate(R.id.action_splashScreenfragment_to_quizFragment)}
 
     }
 

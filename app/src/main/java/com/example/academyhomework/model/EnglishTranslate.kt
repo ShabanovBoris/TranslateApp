@@ -3,6 +3,7 @@ package com.example.academyhomework.model
 import android.content.Context
 import android.view.View
 import com.example.academyhomework.R
+import com.example.academyhomework.utils.Utils
 import com.google.android.material.button.MaterialButton
 import java.lang.Math.random
 import kotlin.math.nextUp
@@ -12,7 +13,7 @@ import kotlin.random.Random
 data class EnglishTranslate(
     val engWord:String = "",
     val translateRus: String = "",
-    val hint:String
+    val hint:String = Utils.makeHint(translateRus)
 ){
 
     fun setAnswers(listW:List<EnglishTranslate>,view: View){
