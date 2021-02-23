@@ -2,9 +2,8 @@ package com.example.academyhomework
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.academyhomework.adapters.EnglishTranslateAdapter
@@ -14,22 +13,16 @@ import com.example.academyhomework.extensions.toEnglishTranslateList
 import com.example.academyhomework.model.EnglishTranslate
 import kotlinx.coroutines.*
 
-class QuizFragment : Fragment() {
+class QuizFragment : Fragment(R.layout.fragment_quiz) {
 
     val scope = CoroutineScope(Dispatchers.Main)
     private lateinit var  recyclerView: RecyclerView
+    private lateinit var timerView: TextView
     private lateinit var list: MutableList<EnglishTranslate>
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quiz, container, false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        timerView = view.findViewById<TextView>(R.id.tv_timer)
+        timerView.text = "0"
         recyclerView = view.findViewById(R.id.rv_quiz)
         recyclerView.setHasFixedSize(true)
         scope.launch { setRecyclerList() }
@@ -38,7 +31,7 @@ class QuizFragment : Fragment() {
     private suspend fun setRecyclerList(){
         val listTemp = coroutineScope { DataSource().loadWords(requireContext()) }
         list = (listTemp.toEnglishTranslateList()).toMutableList()
-        var adapter =  EnglishTranslateAdapter()
+        val adapter =  EnglishTranslateAdapter()
 
         adapter.setOnClickAnswerHandler(getHandler(adapter))
 
@@ -67,9 +60,28 @@ class QuizFragment : Fragment() {
                 }
             }
 
-        override fun handle(ans: EnglishTranslate.TranslateVariants, pos: Int) {
-            action(ans, pos)
+        override fun handle(ans: EnglishTranslate.TranslateVariants, adapterPosition: Int) {
+            action(ans, adapterPosition)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        scope.launch { timerStart() }
+    }
+
+    private suspend fun timerStart() = withContext(Dispatchers.IO) {
+        while (true) {
+            delay(1000L)
+            timerView.apply {
+                withContext(Dispatchers.Main){text = (text.toString().toInt() + 1).toString()}
+            }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        scope.cancel()
     }
 
 }

@@ -75,27 +75,18 @@
 
     <Button
         android:id="@+id/buttonDown"
-        android:layout_width="64dp"
+        android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_margin="16dp"
         android:background="@drawable/shape_oval"
+        android:rotation="180"
+        android:padding="0dp"
         app:icon="@drawable/ic_baseline_keyboard_arrow_down_24"
-        app:iconGravity="textStart"
+        app:iconGravity="start"
+        app:iconSize="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:strokeColor="#B2EBF2" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="32dp"
-        android:layout_marginBottom="250dp"
-        android:clickable="true"
-        android:src="?attr/actionModeCutDrawable"
-        app:layout_constraintBottom_toTopOf="@+id/tv_ER"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintTop_toTopOf="parent" />
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

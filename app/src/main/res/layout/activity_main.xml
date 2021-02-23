@@ -23,6 +23,7 @@
     <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:visibility="gone"
         android:id="@+id/main_container"
         />
 
@@ -31,6 +32,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
+            android:visibility="gone"
             android:id="@+id/imageButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,6 +43,7 @@
             android:layout_weight="1"
             android:background="@color/primaryColor"/>
         <Button
+            android:visibility="gone"
             android:id="@+id/imageButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,6 +54,7 @@
             android:layout_weight="1"
             android:background="@color/primaryColor"/>
         <Button
+            android:visibility="gone"
             android:id="@+id/imageButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

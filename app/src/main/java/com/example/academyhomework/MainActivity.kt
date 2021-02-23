@@ -28,30 +28,34 @@ class MainActivity : AppCompatActivity(), Throughoutable {
 
 
 
-
+    var isHiden = true
     override fun onClickToHide(view: View) {
 
-        findViewById<Button>(R.id.imageButton1).visibility = View.GONE
-        findViewById<Button>(R.id.imageButton2).visibility = View.GONE
-        findViewById<Button>(R.id.imageButton3).visibility = View.GONE
-        view.visibility = View.GONE
-        fragment?.visibility = View.GONE
-        val snackbar = Snackbar.make(fragment!!.rootView,"Pictures are coming back?",Snackbar.LENGTH_INDEFINITE)
-            .setAction("undo"){
-                findViewById<Button>(R.id.imageButton1).visibility = View.VISIBLE
-                findViewById<Button>(R.id.imageButton2).visibility = View.VISIBLE
-                findViewById<Button>(R.id.imageButton3).visibility = View.VISIBLE
-                fragment?.visibility = View.VISIBLE
-                view.visibility = View.VISIBLE
-
-            }.setActionTextColor(Color.BLACK)
-        val params = FrameLayout.LayoutParams(snackbar.view.layoutParams)
-        snackbar.view.translationY = -100F
-        params.gravity = Gravity.BOTTOM
-        snackbar.view.layoutParams = params
-        snackbar.animationMode = BaseTransientBottomBar.ANIMATION_MODE_FADE
-        snackbar.show()
-
+        if(isHiden) {
+            isHiden = false
+            view.rotation = 0F
+            fragment?.visibility = View.GONE
+            val snackbar =
+                Snackbar.make(fragment!!.rootView, "You sure?", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Yep!") {
+                        findViewById<Button>(R.id.imageButton1).visibility = View.VISIBLE
+                        findViewById<Button>(R.id.imageButton2).visibility = View.VISIBLE
+                        findViewById<Button>(R.id.imageButton3).visibility = View.VISIBLE
+                    }.setActionTextColor(Color.BLACK)
+            val params = FrameLayout.LayoutParams(snackbar.view.layoutParams)
+            snackbar.view.translationY = -100F
+            params.gravity = Gravity.BOTTOM
+            snackbar.view.layoutParams = params
+            snackbar.animationMode = BaseTransientBottomBar.ANIMATION_MODE_FADE
+            snackbar.show()
+        }else{
+            isHiden = true
+            view.rotation = 180F
+            fragment?.visibility = View.GONE
+            findViewById<Button>(R.id.imageButton1).visibility = View.GONE
+            findViewById<Button>(R.id.imageButton2).visibility = View.GONE
+            findViewById<Button>(R.id.imageButton3).visibility = View.GONE
+        }
 
 
     }

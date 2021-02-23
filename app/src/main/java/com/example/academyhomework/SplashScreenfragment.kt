@@ -52,7 +52,6 @@ class SplashScreenfragment : Fragment() {
         }
 
         binding.tvER.apply { setOnClickListener{
-            listener?.onClickToHide(findViewById<TextView>(this.id))
             listener?.onEnglishTranslateClicked()
 
             findNavController().navigate(R.id.action_splashScreenfragment_to_quizFragment)} }
@@ -74,12 +73,4 @@ class SplashScreenfragment : Fragment() {
         super.onDetach()
         listener = null
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_layout, menu)
-
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return false // TODO: 12.02.2021  
-        }
 }
