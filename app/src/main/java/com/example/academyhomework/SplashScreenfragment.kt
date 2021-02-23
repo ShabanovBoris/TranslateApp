@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavHost
 import androidx.navigation.findNavController
@@ -45,13 +46,16 @@ class SplashScreenfragment : Fragment() {
         }
 
         binding.buttonDown.apply {
-            setOnClickListener { listener?.onClickToHide(findViewById<Button>(R.id.buttonDown))
+            setOnClickListener { listener?.onClickToHide(findViewById<Button>(this.id))
                 }
 
         }
 
-        binding.tvER.setOnClickListener{ listener?.onEnglishTranslateClicked()
-        findNavController().navigate(R.id.action_splashScreenfragment_to_quizFragment)}
+        binding.tvER.apply { setOnClickListener{
+            listener?.onClickToHide(findViewById<TextView>(this.id))
+            listener?.onEnglishTranslateClicked()
+
+            findNavController().navigate(R.id.action_splashScreenfragment_to_quizFragment)} }
 
     }
 

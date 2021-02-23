@@ -30,9 +30,8 @@ class EnglishTranslateAdapter() : RecyclerView.Adapter<EnglishTranslateAdapter.E
 
     abstract class ETViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     private class EmptyETViewHolder(itemView: View) : ETViewHolder(itemView)
-    private class WordETViewHolder(itemView: View, answerHandler: AnswerHandler?) :
+    private inner class WordETViewHolder(itemView: View) :
         ETViewHolder(itemView), View.OnClickListener {
-        val answerHandler = answerHandler
 
         val word: TextView = itemView.findViewById(R.id.tv_word)
 
@@ -69,12 +68,12 @@ class EnglishTranslateAdapter() : RecyclerView.Adapter<EnglishTranslateAdapter.E
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ETViewHolder {
+
         return when (viewType) {
             TYPE.WORD.ordinal ->
                 WordETViewHolder(
                     LayoutInflater.from(parent.context)
-                        .inflate(R.layout.quiz_view_holder, parent, false),
-                    answerHandler
+                        .inflate(R.layout.quiz_view_holder, parent, false)
                 )
             else -> EmptyETViewHolder(
                 LayoutInflater.from(parent.context)

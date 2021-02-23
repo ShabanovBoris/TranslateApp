@@ -12,25 +12,14 @@ import com.example.academyhomework.data.DataSource
 import com.example.academyhomework.extensions.AnswerHandler
 import com.example.academyhomework.extensions.toEnglishTranslateList
 import com.example.academyhomework.model.EnglishTranslate
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import kotlinx.coroutines.*
 
 class QuizFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
+    val scope = CoroutineScope(Dispatchers.Main)
     private lateinit var  recyclerView: RecyclerView
     private lateinit var list: MutableList<EnglishTranslate>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,17 +32,17 @@ class QuizFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = view.findViewById(R.id.rv_quiz)
         recyclerView.setHasFixedSize(true)
-        setRecyclerList()
+        scope.launch { setRecyclerList() }
     }
 
-    private fun setRecyclerList(){
-        val listTemp = DataSource().loadWords(requireContext())
+    private suspend fun setRecyclerList(){
+        val listTemp = coroutineScope { DataSource().loadWords(requireContext()) }
         list = (listTemp.toEnglishTranslateList()).toMutableList()
         var adapter =  EnglishTranslateAdapter()
 
         adapter.setOnClickAnswerHandler(getHandler(adapter))
 
-        adapter.bindList(list)
+        adapter.bindList(list.shuffled())
         recyclerView.adapter = adapter
     }
 
@@ -82,19 +71,5 @@ class QuizFragment : Fragment() {
             action(ans, pos)
         }
     }
-
-
-    companion object {
-
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            QuizFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
-
 
 }

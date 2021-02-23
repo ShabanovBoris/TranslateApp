@@ -17,10 +17,14 @@ import com.example.academyhomework.extensions.WordDescribable
 import com.example.academyhomework.model.Dword
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class WordList : BottomSheetDialogFragment() {
 
+    private val scope = CoroutineScope(Dispatchers.Main)
     private  lateinit var recyclerView:RecyclerView
 
 
@@ -86,8 +90,10 @@ class WordList : BottomSheetDialogFragment() {
     }
 
     private fun updateList() {
-        (recyclerView.adapter as WordsAdapter).bindWords( DataSource().loadWords(context?.applicationContext!!))
-        (recyclerView.adapter as WordsAdapter).submitList(DataSource().loadWords(context?.applicationContext!!))
+        scope.launch {
+            (recyclerView.adapter as WordsAdapter).bindWords( DataSource().loadWords(context?.applicationContext!!))
+            (recyclerView.adapter as WordsAdapter).submitList(DataSource().loadWords(context?.applicationContext!!)) }
+
     }
 
 
