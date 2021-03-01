@@ -1,4 +1,4 @@
-package com.example.academyhomework
+package com.example.academyhomework.domain.features.englishToRussianCase
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,11 +6,10 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.academyhomework.adapters.EnglishTranslateAdapter
-import com.example.academyhomework.data.DataSource
-import com.example.academyhomework.extensions.AnswerHandler
-import com.example.academyhomework.extensions.toEnglishTranslateList
-import com.example.academyhomework.model.EnglishTranslate
+import com.example.academyhomework.R
+import com.example.academyhomework.TimerLiveData
+import com.example.academyhomework.domain.features.repository.DataSource
+import com.example.academyhomework.domain.features.extensions.toEnglishTranslateList
 import kotlinx.coroutines.*
 
 class QuizFragment : Fragment(R.layout.fragment_quiz) {
@@ -20,26 +19,28 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
     private lateinit var timerView: TextView
     private lateinit var list: MutableList<EnglishTranslate>
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         timerView = view.findViewById<TextView>(R.id.tv_timer)
         timerView.text = "0"
         recyclerView = view.findViewById(R.id.rv_quiz)
         recyclerView.setHasFixedSize(true)
-        scope.launch { setRecyclerList() }
+        scope.launch { withContext(Dispatchers.IO) {setRecyclerList()} }
     }
 
     private suspend fun setRecyclerList(){
-        val listTemp = coroutineScope { DataSource().loadWords(requireContext()) }
+        val listTemp = DataSource().loadWords(requireContext())
         list = (listTemp.toEnglishTranslateList()).toMutableList()
         val adapter =  EnglishTranslateAdapter()
 
         adapter.setOnClickAnswerHandler(getHandler(adapter))
 
         adapter.bindList(list.shuffled())
-        recyclerView.adapter = adapter
+       withContext(Dispatchers.Main) {recyclerView.adapter = adapter}
     }
 
-    private fun getHandler(adapter: EnglishTranslateAdapter): AnswerHandler = object : AnswerHandler {
+    private fun getHandler(adapter: EnglishTranslateAdapter): AnswerHandler = object :
+        AnswerHandler {
         override val action: (EnglishTranslate.TranslateVariants, Int) -> Unit
             get() = { ans, pos ->
                 when (ans) {
@@ -67,15 +68,21 @@ class QuizFragment : Fragment(R.layout.fragment_quiz) {
 
     override fun onStart() {
         super.onStart()
-        scope.launch { timerStart() }
-    }
 
-    private suspend fun timerStart() = withContext(Dispatchers.IO) {
-        while (true) {
-            delay(1000L)
-            timerView.apply {
-                withContext(Dispatchers.Main){text = (text.toString().toInt() + 1).toString()}
+            TimerLiveData.start()
+            TimerLiveData.liveData.observe(this@QuizFragment){
+                timerStart(it)
             }
+
+        }
+
+
+
+    private fun timerStart(count:Int) {
+
+                timerView.apply {
+                text = count.toString()
+
         }
     }
 

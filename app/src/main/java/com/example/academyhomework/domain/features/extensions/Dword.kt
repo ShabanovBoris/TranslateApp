@@ -1,11 +1,11 @@
-package com.example.academyhomework.extensions
+package com.example.academyhomework.domain.features.extensions
 
-import com.example.academyhomework.model.Dword
-import com.example.academyhomework.model.EnglishTranslate
-import com.example.academyhomework.model.RussianTranslate
+import com.example.academyhomework.domain.features.simpleWordList.Dword
+import com.example.academyhomework.domain.features.englishToRussianCase.EnglishTranslate
+import com.example.academyhomework.domain.features.russianToEnglishCase.RussianTranslate
 import com.example.academyhomework.utils.Utils
 
-fun Dword.toRussianTranslate():RussianTranslate{
+fun Dword.toRussianTranslate(): RussianTranslate {
     return RussianTranslate(
         rusWord = translate,
         translateEng = word,
@@ -22,7 +22,7 @@ fun List<Dword>.toEnglishTranslateList():List<EnglishTranslate>{
     return newList
 }
 
-fun Dword.toEnglishTranslate():EnglishTranslate{
+fun Dword.toEnglishTranslate(): EnglishTranslate {
     return EnglishTranslate(
         engWord = word,
         translateRus = translate,

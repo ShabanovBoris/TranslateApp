@@ -1,25 +1,21 @@
-package com.example.academyhomework.adapters
+package com.example.academyhomework.domain.features.simpleWordList
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.academyhomework.R
-import com.example.academyhomework.WordCallback
-import com.example.academyhomework.extensions.AutoScrollable
-import com.example.academyhomework.extensions.EditTextChangeListener
-import com.example.academyhomework.extensions.WordDescribable
-import com.example.academyhomework.model.Dword
 import java.lang.Exception
 
 
-class WordsAdapter():androidx.recyclerview.widget.ListAdapter<Dword,WordsAdapter.WordsItemViewHolder>(WordCallback()) {
+class WordsAdapter():androidx.recyclerview.widget.ListAdapter<Dword, WordsAdapter.WordsItemViewHolder>(
+    WordCallback()
+) {
 
-    private var textChangeListener:EditTextChangeListener? = null
+    private var textChangeListener: EditTextChangeListener? = null
     private var disListener: WordDescribable? = null
     private var scrollback: AutoScrollable?=null
     fun setOnClickWordListListener(l: WordDescribable){

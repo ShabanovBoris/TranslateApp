@@ -1,4 +1,4 @@
-package com.example.academyhomework.extensions
+package com.example.academyhomework.domain.features.simpleWordList
 
 import android.widget.EditText
 

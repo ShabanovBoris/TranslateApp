@@ -13,8 +13,20 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-3038" />
-                            <option name="y" value="-476" />
+                            <option name="x" value="-3057" />
+                            <option name="y" value="-718" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="russianTranslateFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-2911" />
+                            <option name="y" value="-365" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -25,12 +37,22 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-3399" />
-                            <option name="y" value="-215" />
+                            <option name="x" value="-3440" />
+                            <option name="y" value="-448" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_splashScreenfragment_to_quizFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_splashScreenfragment_to_russianTranslateFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_splashScreenfragment_to_wordList">
                               <value>
                                 <LayoutPositions />
@@ -46,8 +68,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-2794" />
-                            <option name="y" value="-177" />
+                            <option name="x" value="-3045" />
+                            <option name="y" value="-45" />
                           </Point>
                         </option>
                       </LayoutPositions>

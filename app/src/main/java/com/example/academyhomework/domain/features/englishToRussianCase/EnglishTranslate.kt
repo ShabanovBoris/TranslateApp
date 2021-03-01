@@ -1,12 +1,9 @@
-package com.example.academyhomework.model
+package com.example.academyhomework.domain.features.englishToRussianCase
 
-import android.content.Context
 import android.view.View
 import com.example.academyhomework.R
 import com.example.academyhomework.utils.Utils
 import com.google.android.material.button.MaterialButton
-import java.lang.Math.random
-import kotlin.math.nextUp
 import kotlin.random.Random
 
 
@@ -16,7 +13,7 @@ data class EnglishTranslate(
     val hint:String = Utils.makeHint(translateRus)
 ){
 
-    fun setAnswers(listW:List<EnglishTranslate>,view: View){
+    fun setAnswers(listW:List<EnglishTranslate>, view: View){
         val b1:MaterialButton = view.findViewById(R.id.b_translate_1)
         val b2:MaterialButton = view.findViewById(R.id.b_translate_2)
         val b3:MaterialButton = view.findViewById(R.id.b_translate_3)

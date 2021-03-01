@@ -7,12 +7,15 @@ import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
-import com.example.academyhomework.extensions.Throughoutable
+import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.academyhomework.domain.features.simpleWordList.WordList
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
 
-class MainActivity : AppCompatActivity(), Throughoutable {
+class MainActivity : AppCompatActivity(), Router {
 
 
     var fragment :androidx.fragment.app.FragmentContainerView? = null
@@ -23,6 +26,7 @@ class MainActivity : AppCompatActivity(), Throughoutable {
         setContentView(R.layout.activity_main)
         fragment = findViewById<androidx.fragment.app.FragmentContainerView>(R.id.main_container)
 
+        lifecycle.currentState
 
     }
 
@@ -86,9 +90,14 @@ class MainActivity : AppCompatActivity(), Throughoutable {
             .show(supportFragmentManager, "dialog")
     }
 
-    override fun onEnglishTranslateClicked() {
+    override fun onEnglishTranslateClicked(splashScreenfragment: SplashScreenfragment) {
 
+        splashScreenfragment.findNavController().navigate(R.id.action_splashScreenfragment_to_quizFragment)
 
+    }
+
+    override fun onRussianTranslateClicked(splashScreenfragment: SplashScreenfragment) {
+        splashScreenfragment.findNavController().navigate(R.id.action_splashScreenfragment_to_russianTranslateFragment)
     }
 
 }

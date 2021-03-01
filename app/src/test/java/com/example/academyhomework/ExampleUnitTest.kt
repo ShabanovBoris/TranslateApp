@@ -1,7 +1,5 @@
 package com.example.academyhomework
 
-import com.example.academyhomework.data.DataSource
-import com.example.academyhomework.utils.Utils
 import com.example.academyhomework.utils.Utils.stringWordsDivider
 import org.junit.Test
 

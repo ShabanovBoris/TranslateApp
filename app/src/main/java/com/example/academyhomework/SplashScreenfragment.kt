@@ -4,27 +4,23 @@ import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavHost
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.example.academyhomework.databinding.FragmentSplashScreenfragmentBinding
-import com.example.academyhomework.databinding.FragmentWordListBinding
-import com.example.academyhomework.extensions.Throughoutable
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 
 class SplashScreenfragment : Fragment() {
 
     private var _binding: FragmentSplashScreenfragmentBinding? = null
     private val binding get() = _binding!!
 
-    private var listener:Throughoutable? = null
+    private var listener: Router? = null
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is Throughoutable){
+        if(context is Router){
             listener = context
         }
     }
@@ -41,21 +37,28 @@ class SplashScreenfragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setListeners()
+    }
+
+    private fun setListeners() {
+        binding.tvRE.setOnClickListener{
+            listener?.onRussianTranslateClicked(this)
+        }
+
         binding.textViewAll.setOnClickListener{
             onAllListClick()
         }
 
         binding.buttonDown.apply {
             setOnClickListener { listener?.onClickToHide(findViewById<Button>(this.id))
-                }
+            }
 
         }
 
         binding.tvER.apply { setOnClickListener{
-            listener?.onEnglishTranslateClicked()
-
-            findNavController().navigate(R.id.action_splashScreenfragment_to_quizFragment)} }
-
+            listener?.onEnglishTranslateClicked(this@SplashScreenfragment)
+            }
+        }
     }
 
     private fun onAllListClick() {
@@ -72,5 +75,23 @@ class SplashScreenfragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         listener = null
+    }
+    override fun onStart() {
+        super.onStart()
+        TimerLiveData.liveData.observe(this){
+            timerStart(it)
+        }
+
+    }
+
+
+
+
+    private fun timerStart(count:Int) {
+
+        binding.tvTimer.apply {
+            text = count.toString()
+
+        }
     }
 }

@@ -1,14 +1,11 @@
-package com.example.academyhomework.adapters
+package com.example.academyhomework.domain.features.englishToRussianCase
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.academyhomework.R
-import com.example.academyhomework.extensions.AnswerHandler
-import com.example.academyhomework.model.EnglishTranslate
 import com.google.android.material.button.MaterialButton
 
 class EnglishTranslateAdapter() : RecyclerView.Adapter<EnglishTranslateAdapter.ETViewHolder>() {

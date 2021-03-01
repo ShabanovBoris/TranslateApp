@@ -14,7 +14,7 @@
         android:id="@+id/rv_quiz"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".QuizFragment"
+        tools:context=".domain.features.englishToRussianCase.QuizFragment"
         android:background="@color/primaryColor"
         tools:listitem="@layout/quiz_view_holder"
         android:padding="4dp"

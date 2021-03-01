@@ -1,4 +1,4 @@
-package com.example.academyhomework
+package com.example.academyhomework.domain.features.simpleWordList
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,12 +9,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SnapHelper
-import com.example.academyhomework.adapters.WordsAdapter
-import com.example.academyhomework.data.DataSource
-import com.example.academyhomework.extensions.AutoScrollable
-import com.example.academyhomework.extensions.WordDescribable
-import com.example.academyhomework.model.Dword
+import com.example.academyhomework.R
+import com.example.academyhomework.domain.features.repository.DataSource
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.CoroutineScope
@@ -51,7 +47,7 @@ class WordList : BottomSheetDialogFragment() {
 
 
             val adapter = WordsAdapter()
-            adapter.setAutoScrollBack(object :AutoScrollable{
+            adapter.setAutoScrollBack(object : AutoScrollable {
                 override fun scrollBack(search: EditText) {
                     recyclerView.scrollBy(0,-500)
 

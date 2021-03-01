@@ -1,6 +1,4 @@
-package com.example.academyhomework.extensions
-
-import android.text.TextWatcher
+package com.example.academyhomework.domain.features.simpleWordList
 
 interface EditTextChangeListener {
     val action:(CharSequence?,Int,Int,Int) -> Unit

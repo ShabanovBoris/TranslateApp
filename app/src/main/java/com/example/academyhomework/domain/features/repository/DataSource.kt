@@ -1,8 +1,8 @@
-package com.example.academyhomework.data
+package com.example.academyhomework.domain.features.repository
 
 import android.content.Context
 import com.example.academyhomework.R
-import com.example.academyhomework.model.Dword
+import com.example.academyhomework.domain.features.simpleWordList.Dword
 import com.example.academyhomework.utils.Utils.stringWordsDivider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

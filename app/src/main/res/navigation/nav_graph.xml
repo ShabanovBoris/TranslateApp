@@ -15,10 +15,13 @@
         <action
             android:id="@+id/action_splashScreenfragment_to_quizFragment"
             app:destination="@id/quizFragment" />
+        <action
+            android:id="@+id/action_splashScreenfragment_to_russianTranslateFragment"
+            app:destination="@id/russianTranslateFragment" />
     </fragment>
     <fragment
         android:id="@+id/wordList"
-        android:name="com.example.academyhomework.WordList"
+        android:name="com.example.academyhomework.domain.features.simpleWordList.WordList"
         android:label="fragment_word_list"
         tools:layout="@layout/fragment_word_list" >
         <argument
@@ -28,7 +31,11 @@
     </fragment>
     <fragment
         android:id="@+id/quizFragment"
-        android:name="com.example.academyhomework.QuizFragment"
+        android:name="com.example.academyhomework.domain.features.englishToRussianCase.QuizFragment"
         android:label="fragment_quiz"
         tools:layout="@layout/fragment_quiz" />
+    <fragment
+        android:id="@+id/russianTranslateFragment"
+        android:name="com.example.academyhomework.domain.features.russianToEnglishCase.RussianTranslateFragment"
+        android:label="RussianTranslateFragment" />
 </navigation>
